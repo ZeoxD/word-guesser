@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.vertical-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Change scrollbar width */
+}
+
+.vertical-scrollbar::-webkit-scrollbar-track {
+  background: #fff; /* Scrollbar track color */
+}
+
+.vertical-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar thumb color */
+  border-radius: 0px; /* Round corners */
+}
+
+.vertical-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb hover color */
+}
+
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 2px; /* Change scrollbar width */
+}
+
+.horizontal-scrollbar::-webkit-scrollbar-track {
+  background: #fff; /* Scrollbar track color */
+}
+
+.horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar thumb color */
+  border-radius: 2px; /* Round corners */
+}
+
+.horizontal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb hover color */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  height: 0px; /* Change scrollbar width */
+  width: 0px;
+}
