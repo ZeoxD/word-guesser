@@ -44,10 +44,11 @@ export default function Home() {
 				do {
 					const response = await fetchRandomWord();
 					word = response[0];
-				} while (word.length < 7 && word.length > 10);
+				} while (word.length < 7 || word.length > 10);
 				setGuessWord([...word.split("")]);
 			} catch (error) {
 				console.log(error);
+				setGuessWord([..."applebees".split("")]);
 			}
 		};
 
@@ -127,8 +128,8 @@ export default function Home() {
 						<View
 							key={index}
 							style={{
-								height: "66px",
-								width: "66px",
+								height: "64px",
+								width: "64px",
 								backgroundColor: "gold",
 								justifyContent: "center",
 								alignItems: "center",
@@ -161,7 +162,7 @@ export default function Home() {
 					{alphabets.map((val, index) => (
 						<TouchableOpacity
 							key={index}
-							onPress={() => handleKeyPress(val.letter)}
+							onPress={hasGuessed ? null : () => handleKeyPress(val.letter)}
 							style={{
 								height: "72px",
 								width: "72px",
@@ -178,7 +179,7 @@ export default function Home() {
 					))}
 				</View>
 
-				{hasGuessed && (
+				{hasGuessed && guessWord.length > 0 && (
 					<View
 						style={{
 							height: "72px",
@@ -196,7 +197,7 @@ export default function Home() {
 					</View>
 				)}
 			</View>
-			<View ref={scrollRef} style={{ height: "500px", width: "400px", overflowY: "scroll" }}>
+			<View ref={scrollRef} style={{ height: "500px", width: "400px", overflowY: "auto" }}>
 				<View
 					style={{
 						backgroundColor: "darkblue",
@@ -220,7 +221,7 @@ export default function Home() {
 				{chosenLetters.length < 1 && (
 					<View
 						style={{
-							backgroundColor: "#888",
+							backgroundColor: "#F0F6FB",
 							flexDirection: "row",
 							minHeight: "60px",
 							justifyContent: "center",
@@ -229,21 +230,24 @@ export default function Home() {
 					>
 						<Text
 							style={{
-								color: "#fff",
+								color: "#000",
 								width: "40%",
 								textAlign: "center",
+								fontWeight: "500",
 							}}
 						>
 							0
 						</Text>
-						<Text style={{ color: "#fff", width: "60%", textAlign: "center" }}>{guessWord.length}</Text>
+						<Text style={{ color: "#000", width: "60%", textAlign: "center", fontWeight: "500" }}>
+							{guessWord.length}
+						</Text>
 					</View>
 				)}
 				{attemptLog.map((log, index) => (
 					<View
 						key={log.attempt + index}
 						style={{
-							backgroundColor: "#888",
+							backgroundColor: "#F0F6FB",
 							flexDirection: "row",
 							minHeight: "60px",
 							justifyContent: "center",
@@ -252,14 +256,15 @@ export default function Home() {
 					>
 						<Text
 							style={{
-								color: "#fff",
+								color: "#000",
 								width: "40%",
 								textAlign: "center",
+								fontWeight: "500",
 							}}
 						>
 							{log.attempt}
 						</Text>
-						<Text style={{ color: "#fff", width: "60%", textAlign: "center" }}>{log.remaining}</Text>
+						<Text style={{ color: "#000", width: "60%", textAlign: "center", fontWeight: "500" }}>{log.remaining}</Text>
 					</View>
 				))}
 			</View>

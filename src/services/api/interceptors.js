@@ -16,7 +16,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       console.error('Unauthorized - Logging out...');
-      // Handle logout or token refresh logic here
+      // logout or refresh token logic
     }
     return Promise.reject(error);
   }
